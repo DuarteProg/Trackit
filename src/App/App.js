@@ -14,10 +14,12 @@ export default function App() {
   const [token, setToken] = useState();
   const [image, setImage] = useState();
   const [click, setClick] = useState(false);
+  const [contador, setContador] = useState(0)
+  const [total, setTotal] = useState(0)
 
   return (
     <TokenContext.Provider
-      value={{ token, setToken, image, setImage, click, setClick}}
+      value={{ token, setToken, image, setImage, click, setClick, contador, setContador, total, setTotal }}
     >
       <BrowserRouter>
         <Routes>

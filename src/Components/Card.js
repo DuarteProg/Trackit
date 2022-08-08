@@ -10,7 +10,7 @@ export default function Card() {
   const [diaSelecionado, setDiaSelecionado] = useState(new Map());
   const { setClick, token } = useContext(TokenContext);
 
-  const [week] = useState([
+  const [week, setWeek] = useState([
     { id: "0", day: "D", selected: false },
     { id: "1", day: "S", selected: false },
     { id: "2", day: "T", selected: false },
@@ -53,7 +53,8 @@ export default function Card() {
     );
     promise.then((response) => {
       const { data } = response;
-      console.log(data);
+      setClick(false);
+
     });
   }
 

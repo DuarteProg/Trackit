@@ -52,7 +52,7 @@ export default function TelaHabitos() {
     key={id} id={id} name={name} days={days}/>
           })}
         {click ? <Card /> : null}</Main>
-      <Mbaixo>{Mbaixo()}</Mbaixo>
+      <Mbaixo>{<Mbaixo/>}</Mbaixo>
       <Footer>
         <Fesquerdo>
           <p>Habits</p>
