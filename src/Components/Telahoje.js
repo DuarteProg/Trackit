@@ -13,6 +13,8 @@ export default function TelaHoje() {
   const { image, token } = useContext(TokenContext);
   const value = 0.66; // para o loader
   const text = "Today"; // para o loader
+
+
   
   useEffect(() => {
     const promise = axios.get(

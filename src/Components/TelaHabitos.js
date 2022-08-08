@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import TokenContext from "../Contexts/AuthContext";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
+import List from "./List";
 import Mbaixo from "./Mbaixo";
 import Card from "./Card";
 import axios from "axios";
@@ -12,35 +13,25 @@ import axios from "axios";
 import Button from "./Button";
 
 export default function TelaHabitos() {
-  
   const { token, image, click, setClick } = useContext(TokenContext);
-  
-  
-  
+  const [listar, setListar] = useState();
 
   const promise = axios.get(
     "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
     {
       headers: {
         Authorization: `Bearer ${token}`,
-      }
+      },
     }
   );
 
+
   promise.then((response) => {
-    const {data} = response
-  console.log(data)
+    const { data } = response;
+    setListar(data);
   });
-  
 
 
-  
-  
-
-   
-  
-
-  
 
   const value = 0.66; // para o loader
   const text = "Today"; // para o loader
@@ -54,7 +45,13 @@ export default function TelaHabitos() {
         <p>My habits</p>
         {Button({ setClick })}
       </Mcima>
-      <Main>{click ? Card() : <div></div>}</Main>
+      <Main>
+      {listar?.map((list) => {
+    const {id, name, days} = list;
+    return <List 
+    key={id} id={id} name={name} days={days}/>
+          })}
+        {click ? <Card /> : null}</Main>
       <Mbaixo>{Mbaixo()}</Mbaixo>
       <Footer>
         <Fesquerdo>
@@ -79,12 +76,7 @@ export default function TelaHabitos() {
       </Footer>
     </Container>
   );
-
-
 }
-
-
-
 
 const Container = styled.div`
   width: 375px;
